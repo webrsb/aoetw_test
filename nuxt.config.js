@@ -62,7 +62,9 @@ module.exports = {
       return Object.assign({}, config, {
         devtool: 'source-map'
       })
-    }
+    },
+    quiet: false
+    
   },
   router: {
     base: "/next"
