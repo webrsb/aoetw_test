@@ -58,13 +58,6 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
-      return Object.assign({}, config, {
-        devtool: 'source-map'
-      })
-    },
-    quiet: false
-    
   },
   router: {
     base: "/next"
