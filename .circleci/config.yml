@@ -42,8 +42,8 @@ jobs:
       - run: mv $(pwd)/dist dist_cache
       - save_cache:
           paths:
-            - dist_cache-{{ .BuildNum }}
-          key: v1-last_dist
+            - dist_cache
+          key: v1-last_dist-{{ .BuildNum }}
       - deploy:
           command: |
             rsync -rvcm --compare-dest=../old_dist_cache/ dist_cache/ dist/
