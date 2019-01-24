@@ -26,11 +26,9 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-          # last dist
-          - v1-last_dist
       - restore_cache:
           keys:
-          - v1-last_dist
+          - v1-last_dist-
 
       - run: mv $(pwd)/dist_cache old_dist_cache || mkdir old_dist_cache
       - run: yarn install
@@ -44,7 +42,7 @@ jobs:
       - run: mv $(pwd)/dist dist_cache
       - save_cache:
           paths:
-            - dist_cache
+            - dist_cache-{{ .BuildNum }}
           key: v1-last_dist
       - deploy:
           command: |
