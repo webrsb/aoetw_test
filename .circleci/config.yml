@@ -25,14 +25,24 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
+          # last dist
+          - v1-last_dist
 
+      - run: mv $CIRCLE_WORKING_DIRECTORY/dist_cache old_dist_cache
       - run: yarn install
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - deploy:
+      - build:
           command: |
             yarn run generate
-      - run: node .circleci/deploy.js
-      - run: echo "WE'RE ONLINE"
+      - run: mv $CIRCLE_WORKING_DIRECTORY/dist dist_cache
+      - save_cache:
+          paths:
+            - dist_cache
+          key: v1-last_dist
+      - deploy:
+          command: |
+            echo deploy
+      # - run: node .circleci/deploy.js
