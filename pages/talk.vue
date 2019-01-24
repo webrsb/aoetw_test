@@ -7,6 +7,7 @@
         <div>
           <ul>
             <li>任何問題或是網頁有錯誤都歡迎在這邊討論</li>
+            <li>或是到discord的回報區</li>
           </ul>
         </div>
       </div>
