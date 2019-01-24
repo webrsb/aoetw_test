@@ -18,6 +18,7 @@ jobs:
 
     steps:
       - checkout
+      - run: sudo apt install rsync
 
       # Download and cache dependencies
       - restore_cache:
@@ -44,5 +45,6 @@ jobs:
           key: v1-last_dist
       - deploy:
           command: |
+            rsync -rvcm --compare-dest=../old_dist_cache/ dist_cache/ dist/
             echo deploy
       # - run: node .circleci/deploy.js
