@@ -28,6 +28,9 @@ jobs:
           - v1-dependencies-
           # last dist
           - v1-last_dist
+      - restore_cache:
+          keys:
+          - v1-last_dist
 
       - run: mv $(pwd)/dist_cache old_dist_cache || mkdir old_dist_cache
       - run: yarn install
@@ -46,5 +49,4 @@ jobs:
       - deploy:
           command: |
             rsync -rvcm --compare-dest=../old_dist_cache/ dist_cache/ dist/
-            echo deploy
-      # - run: node .circleci/deploy.js
+            node .circleci/deploy.js
