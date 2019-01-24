@@ -34,7 +34,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - build:
+      - run:
           command: |
             yarn run generate
       - run: mv $CIRCLE_WORKING_DIRECTORY/dist dist_cache
